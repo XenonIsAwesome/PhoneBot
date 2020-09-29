@@ -1,0 +1,10 @@
+{
+    "bot": {
+      "plugins": [
+          "plugins.commands.friends",
+          "plugins.commands.settings"
+      ],
+      "commands_require_mention": "false",
+      "commands_prefix": "phone."
+    }
+  }
