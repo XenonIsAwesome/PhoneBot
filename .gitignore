@@ -1,7 +1,4 @@
 .env
-.vscode/
 venv/
-start.bat
 phonebot.json
 __pycache__/
-.idea/
