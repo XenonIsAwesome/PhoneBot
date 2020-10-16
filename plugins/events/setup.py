@@ -24,4 +24,11 @@ class Setup(Plugin):
             for chan in list(event.guild.channels.values())
                 if chan.type == ChannelType.GUILD_TEXT:
                     chan.send_message('', embed=welcome_message_embed(event.guild))
+
+    @Plugin.listen('GuildDelete')
+    def on_guild_create(self, event):
+        with TinyDB('phonebot.json') as db:
+            # Removing the guild from the database                
+            db.remove(where('guild_id') == event.guild.id)
+    
             
