@@ -9,11 +9,16 @@ class SettingsCommands(Plugin):
         if admin_roles:
             admin_roles = admin_roles.replace('<@', '').replace('>', '').split(' ')
 
+        for role in admin_roles:
+            if role not in event.guild.roles.keys:
+                event.msg.reply('One of the roles doesn\'t exist in this guild...')
+                return
+
         # making the unique category and channels for phonebot to use
         try:
             category_id = event.guild.create_category(name='𝙋𝙝𝙤𝙣𝙚𝘽𝙤𝙩').id
-            tchannel = event.guild.create_text_channel(name='𝙋𝙝𝙤𝙣𝙚𝘽𝙤𝙩-conversation', parent_id=category_id)
-            vchannel = event.guild.create_voice_channel(name='𝙋𝙝𝙤𝙣𝙚𝘽𝙤𝙩 Conversation', parent_id=category_id)
+            tchannel = event.guild.create_text_channel(name='𝙋𝙝𝙤𝙣𝙚𝘽𝙤𝙩-conversation', parent_id=category_id).id
+            vchannel = event.guild.create_voice_channel(name='𝙋𝙝𝙤𝙣𝙚𝘽𝙤𝙩 Conversation', parent_id=category_id).id
 
             # adding all the values to the database
             with TinyDB('phonebot.json') as db:
@@ -33,5 +38,4 @@ class SettingsCommands(Plugin):
                         Query().guild_id == event.guild.id
                     )
         except APIException as e:
-            event.msg.reply(f'I dont have enough premissions to do that.\n**`Error: {e.args[0]}`**')
-
+            event.msg.reply(f'I dont have enough premissions to do that...\n**`Error: {e.args[0]}`**')
