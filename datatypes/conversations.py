@@ -6,7 +6,6 @@ INVITES = []
 
 
 class Conversation:
-    
     def __init__(self, members):
         self.members = []
         for member in members:
@@ -26,15 +25,15 @@ class ConversationInvite(Conversation):
     def __init__(self, members, conv_type):
         self.conv_type = conv_type
         self.messages = []
-        super()
-    
+        super().__init__(members)
+
     def send_accept(self, event, invite_initiator):
         for member in [int(m) for m in self.members]:
             if not db.get(Query().guild_id == snowflake):
                 event.msg.reply("I don\'t know one of the servers...")
                 return
         
-        embed = accept_message_embed(event, guilds)
+        embed = accept_message_embed(event, members)
 
         for member in [member for member in self.members if member.id != invite_initiator.id]:
             with TinyDB('phonebot.json') as db:
