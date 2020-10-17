@@ -3,11 +3,16 @@ from util.misc import wip
 from datatypes.conversations import *
 from os import getenv
 
+
 class Chat(Plugin):
     @Plugin.listen('MessageCreate')
     def on_message_create(self, event):
         if event.author.id == getenv("CLIENT_ID"): return
-        if event.guild.id not in [member.id for members in [conv.members for conv in CONVERSATIONS]]: return
+        if event.guild.id not in [
+                member.id
+                for members in [conv.members for conv in CONVERSATIONS]
+        ]:
+            return
         pass
 
     @Plugin.listen('MessageReactionAdd')

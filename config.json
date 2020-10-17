@@ -1,15 +1,14 @@
 {
-    "bot": {
-      "plugins": [
-          "plugins.commands.friends",
-          "plugins.commands.settings",
-          "plugins.commands.general",
-          "plugins.commands.chat",
-          "plugins.events.chat",
-          "plugins.commands.setup"
-          
-      ],
-      "commands_require_mention": "false",
-      "commands_prefix": "phone."
-    }
+  "bot": {
+    "plugins": [
+      "plugins.commands.friends",
+      "plugins.commands.settings",
+      "plugins.commands.general",
+      "plugins.commands.chat",
+      "plugins.events.chat",
+      "plugins.commands.setup"
+    ],
+    "commands_require_mention": "false",
+    "commands_prefix": "phone."
   }
+}
