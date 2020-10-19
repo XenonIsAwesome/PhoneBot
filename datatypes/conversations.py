@@ -6,13 +6,9 @@ INVITES = []
 
 
 class Conversation:
-    def __init__(self, members):
+    def __init__(self, first_member):
         self.members = []
-        for member in members:
-            with TinyDB('phonebot.json') as db:
-                if not db.get(Query().guild_id == member): return
-                    member = self.bot.client.state.guilds[member_snowflake]
-            self.members.append(member)
+        self.add_member(first_member.id)
     
     def add_member(self, member_snowflake):
         with TinyDB('phonebot.json') as db:
