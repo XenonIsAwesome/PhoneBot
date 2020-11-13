@@ -1,19 +1,17 @@
 from disco.bot import Plugin
 from tinydb import TinyDB, Query
 from util.embedder import friendlist_embed
-from util.misc import wip
+
+friends_q = Query()
 
 
 class Friends(Plugin):
     @Plugin.command('friendlist')
     def on_friendlist_command(self, event):
-        with TinyDB('phonebot.json') as db:
-            try:
-                friendlist = db.get(
-                    Query().guild_id == event.guild.id)['friendlist']
-            except Exception as e:
-                event.msg.reply("You don\'t have any friends yet loser...")
-                return
+        with TinyDB('C:\\Users\\ofek1\\Desktop\\Folders\\github-repos\\BOTTEST - Copy\\phonebot.json') as db:
+            friendlist = db.get(Query().guild_id == event.guild.id)['friendlist']
+        if not friendlist:
+            return event.msg.reply("You don\'t have any friends yet loser...")
         event.msg.reply('', embed=friendlist_embed(friendlist, event.guild))
 
     @Plugin.command('add', '<snowflake:int> [name:str...]')
@@ -31,14 +29,10 @@ class Friends(Plugin):
 
     @Plugin.command('remove', '<friend:str...>')
     def on_remove_command(self, event, friend):
-        try:
-            snowflake = db.get(
-                Query().guild_id == event.guild.id)['friendlist'][friend]
-        except Exception as e:
-            event.msg.reply(f"The server isn\'t on your friendlist...")
-            return
-
-        with TinyDB('phonebot.json') as db:
+        with TinyDB('C:\\Users\\ofek1\\Desktop\\Folders\\github-repos\\BOTTEST - Copy\\phonebot.json') as db:
             fl = db.get(Query().guild_id == event.guild.id)['friendlist']
+            if fl.get(friend):
+                return event.msg.reply(f"The server isn\'t on your friendlist...")
+
             del fl[friend]
-            db.update({'friendlist': fl}, Query().guild_id == event.guild.id)
+            db.update({'friendlist': fl}, friends_q.guild_id == event.guild.id)

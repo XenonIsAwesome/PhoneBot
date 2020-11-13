@@ -1,8 +1,27 @@
 from datatypes.conversations import INVITES, CONVERSATIONS
+from disco.bot.bot import BotConfig
+
+
+def get_config():
+    config = BotConfig()
+    config.commands_require_mention = False
+    config.commands_prefix = "phone."
+    config.plugins = [
+        "plugs.commands.chat",
+        "plugs.commands.friends",
+        "plugs.commands.general",
+        "plugs.commands.settings",
+        "plugs.events.chat_events",
+    ]
+    return config
 
 
 def wip(event):
     event.msg.reply('This command is still WIP...')
+
+
+def to_unix_timestamp(discord_dt):
+    return discord_dt.timestamp()
 
 
 def get_conv(member_id, conv_type=None):

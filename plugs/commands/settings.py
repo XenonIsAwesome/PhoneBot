@@ -1,20 +1,17 @@
 from disco.bot import Plugin
 from disco.api.http import APIException
-from tinydb import TinyDB, Query, where
+from tinydb import TinyDB, Query
 
 
 class SettingsCommands(Plugin):
     @Plugin.command('setup', '[admin_roles:str...]')
     def on_setup_command(self, event, admin_roles=None):
         if admin_roles:
-            admin_roles = admin_roles.replace('<@', '').replace('>',
-                                                                '').split(' ')
+            admin_roles = admin_roles.replace('<@', '').replace('>', '').split(' ')
 
-        for role in admin_roles:
-            if role not in event.guild.roles.keys:
-                event.msg.reply(
-                    'One of the roles doesn\'t exist in this guild...')
-                return
+            for role in admin_roles:
+                if role not in event.guild.roles.keys:
+                    return event.msg.reply('One of the roles doesn\'t exist in this guild...')
 
         # making the unique category and channels for phonebot to use
         try:
@@ -25,11 +22,11 @@ class SettingsCommands(Plugin):
                 name='𝙋𝙝𝙤𝙣𝙚𝘽𝙤𝙩 Conversation', parent_id=category_id).id
 
             # adding all the values to the database
-            with TinyDB('phonebot.json') as db:
+            with TinyDB('C:\\Users\\ofek1\\Desktop\\Folders\\github-repos\\BOTTEST - Copy\\phonebot.json') as db:
                 db.update(
                     {
-                        'text_channel_id': tchannel.id,
-                        'voice_channel_id': vchannel.id
+                        'text_channel_id': tchannel,
+                        'voice_channel_id': vchannel
                     },
                     Query().guild_id == event.guild.id)
 

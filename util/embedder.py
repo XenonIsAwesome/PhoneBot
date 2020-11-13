@@ -12,7 +12,8 @@ def text_message_embed(event):
         name=event.author,
         url=
         f"""https://discordapp.com/channels/{event.guild.id}/{event.channel_id}/{event.id}""",
-        icon_url=event.author.get_avatar_url())
+        icon_url=event.author.get_avatar_url()
+    )
 
     embed.timestamp = dt.utcnow().isoformat()
     embed.set_footer(text=f"From {event.guild.name}")
@@ -29,14 +30,23 @@ React with :x: to ignore.
     embed.color = str(0xFEFEFE)
 
     embed.set_author(
-        name=
-        f'{event.guild.name} wants to start a text conversation with this server.',
-        icon_url=event.guild.get_icon_url())
+        name=f'{event.guild.name} wants to start a text conversation with this server.',
+        icon_url=event.guild.get_icon_url()
+    )
 
     if len(members) > 2:
-        embed.add_field(name='Members:',
-                        value=f"{', '.join([mem.name for mem in members])}",
-                        inline=False)
+        embed.add_field(
+            name='Members:',
+            value=', '.join([mem.name for mem in members]),
+            inline=False
+        )
+    else:
+        embed.add_field(
+            name='With:',
+            value=members[0].name,
+            inline=False
+        )
+    
     return embed
 
 

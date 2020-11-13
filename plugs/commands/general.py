@@ -2,7 +2,7 @@ from disco.bot import Plugin
 from util.misc import to_unix_timestamp, wip
 
 
-class GeneralCommands(Plugin):
+class General(Plugin):
     @Plugin.command('ping')
     def on_ping_command(self, event):
         reply = event.msg.reply(':ping_pong: Pinging ...')

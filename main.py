@@ -1,9 +1,8 @@
 from dotenv import load_dotenv
 from pathlib import Path
 from os import system, getenv
-from util.misc import get_invite
 
 load_dotenv(Path('.env'))
 
-print("Invite:", get_invite(getenv("CLIENT_ID")))
-system(f'python -m disco.cli --config config.json --token {getenv("TOKEN")}')
+print(f"Invite: https://discord.com/api/oauth2/authorize?client_id={getenv('CLIENT_ID')}&permissions=0&scope=bot")
+system(f'py -m disco.cli --config config.json --token {getenv("TOKEN")}')
