@@ -29,7 +29,7 @@ class Friends(Plugin):
 
     @Plugin.command('remove', '<friend:str...>')
     def on_remove_command(self, event, friend):
-        with TinyDB('C:\\Users\\ofek1\\Desktop\\Folders\\github-repos\\BOTTEST - Copy\\phonebot.json') as db:
+        with TinyDB('phonebot.json') as db:
             fl = db.get(Query().guild_id == event.guild.id)['friendlist']
             if fl.get(friend):
                 return event.msg.reply(f"The server isn\'t on your friendlist...")

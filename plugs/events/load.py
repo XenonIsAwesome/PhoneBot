@@ -9,7 +9,7 @@ guild_q = Query()
 class Load(Plugin):
     @Plugin.listen("GuildCreate")
     def on_guild_create(self, event):
-        with TinyDB("C:\\Users\\ofek1\\Desktop\\Folders\\github-repos\\BOTTEST - Copy\\phonebot.json") as db:
+        with TinyDB("phonebot.json") as db:
             if db.get(guild_q.guild_id == event.guild.id): return
             # Inserting the guild into the database
             db.insert(
@@ -31,7 +31,7 @@ class Load(Plugin):
     @Plugin.listen('GuildDelete')
     def on_guild_delete(self, event):
         try:
-            with TinyDB('C:\\Users\\ofek1\\Desktop\\Folders\\github-repos\\BOTTEST - Copy\\phonebot.json') as db:
+            with TinyDB('phonebot.json') as db:
                 # Removing the guild from the database                
                 db.remove(where('guild_id') == event.id)
         except: pass

@@ -18,7 +18,7 @@ class ChatEvents(Plugin):
         invite = get_invite(event.msg.id)
         if not invite: return
         if event.emoji.name not in ['white_check_mark', 'x']: return event.delete()
-        with TinyDB('C:\\Users\\ofek1\\Desktop\\Folders\\github-repos\\BOTTEST - Copy\\phonebot.json') as db:
+        with TinyDB('phonebot.json') as db:
             admin_roles = db.get(Query().guild_id == event.guild.id)['admin_roles']
         if not has_admin_role(event, admin_roles): return event.delete()
         if event.emoji.name == 'x': return event.msg.delete()

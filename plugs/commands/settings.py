@@ -22,7 +22,7 @@ class SettingsCommands(Plugin):
                 name='𝙋𝙝𝙤𝙣𝙚𝘽𝙤𝙩 Conversation', parent_id=category_id).id
 
             # adding all the values to the database
-            with TinyDB('C:\\Users\\ofek1\\Desktop\\Folders\\github-repos\\BOTTEST - Copy\\phonebot.json') as db:
+            with TinyDB('phonebot.json') as db:
                 db.update(
                     {
                         'text_channel_id': tchannel,

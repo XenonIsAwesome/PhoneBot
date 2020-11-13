@@ -16,7 +16,7 @@ class Conversation(object):
             self.add_member(m)
     
     def add_member(self, member_snowflake):
-        with TinyDB('C:\\Users\\ofek1\\Desktop\\Folders\\github-repos\\BOTTEST\\phonebot.json') as db:
+        with TinyDB('phonebot.json') as db:
             if not db.get(conv_q.guild_id == member_snowflake): return
         member = self.bot.client.state.guilds[member_snowflake]
         self.members.append(member)
@@ -30,14 +30,14 @@ class ConversationInvite(Conversation):
 
     def send_accept(self, event, invite_initiator):
         for member in [m.id for m in self.members]:
-            with TinyDB('C:\\Users\\ofek1\\Desktop\\Folders\\github-repos\\BOTTEST\\phonebot.json') as db:
+            with TinyDB('phonebot.json') as db:
                 if not db.get(Query().guild_id == member.id):
                     return event.msg.reply("I don\'t know one of the servers...")
 
         embed = accept_message_embed(event, self.members)
 
         for member in [member for member in self.members if member.id != invite_initiator.id]:
-            with TinyDB('C:\\Users\\ofek1\\Desktop\\Folders\\github-repos\\BOTTEST\\phonebot.json') as db:
+            with TinyDB('phonebot.json') as db:
                 mem_channel_id = db.get(Query().guild_id == member)['text_channel_id']
             msg = member.channels[mem_channel_id].send_message('', embed=embed)
             msg.add_reaction(Emoji('✅'))

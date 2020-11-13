@@ -12,7 +12,7 @@ class Chat(Plugin):
             return
 
         member_snowflakes = []
-        with TinyDB('C:\\Users\\ofek1\\Desktop\\Folders\\github-repos\\BOTTEST - Copy\\phonebot.json') as db:
+        with TinyDB('phonebot.json') as db:
             for member in members.split(' '):
                 if member not in db.get(Query().guild_id == int(event.guild.id))['friendlist'].keys():
                     event.msg.reply("You are not friends with this server...")
