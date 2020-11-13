@@ -1,4 +1,6 @@
 .env
-venv/
+env/
 phonebot.json
 __pycache__/
+.vscode/
+.idea/
