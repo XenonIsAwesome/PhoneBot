@@ -1,9 +1,11 @@
 {
   "bot": {
     "plugins": [
+      "plugs.commands.chat",
       "plugs.commands.friends",
       "plugs.commands.general",
       "plugs.commands.settings",
+      "plugs.events.chat_events",
       "plugs.events.load"
     ],
     "commands_require_mention": true,
