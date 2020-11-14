@@ -8,7 +8,7 @@ friends_q = Query()
 class Friends(Plugin):
     @Plugin.command('friendlist')
     def on_friendlist_command(self, event):
-        with TinyDB('C:\\Users\\ofek1\\Desktop\\Folders\\github-repos\\BOTTEST - Copy\\phonebot.json') as db:
+        with TinyDB('phonebot.json') as db:
             friendlist = db.get(Query().guild_id == event.guild.id)['friendlist']
         if not friendlist:
             return event.msg.reply("You don\'t have any friends yet loser...")
