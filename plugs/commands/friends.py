@@ -31,7 +31,7 @@ class Friends(Plugin):
     def on_remove_command(self, event, friend):
         with TinyDB('phonebot.json') as db:
             fl = db.get(Query().guild_id == event.guild.id)['friendlist']
-            if fl.get(friend):
+            if not fl.get(friend):
                 return event.msg.reply(f"The server isn\'t on your friendlist...")
 
             del fl[friend]
