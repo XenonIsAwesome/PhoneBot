@@ -1,2 +1,0 @@
-# PhoneBot
-### **Info coming soon**
