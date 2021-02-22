@@ -2,7 +2,7 @@ from discord.ext import commands
 
 from util.misc import has_admin_role
 from util.datatypes.conversations import *
-from util.db_connection import connect_to_db
+from util.db_management.db_connection import connect_to_db
 
 from os import getenv
 

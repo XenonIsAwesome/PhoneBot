@@ -1,6 +1,6 @@
 from discord.ext import commands
 from util.embedder import friendlist_embed
-from util.db_connection import connect_to_db
+from util.db_management.db_connection import connect_to_db
 
 db = connect_to_db()
 
@@ -21,6 +21,7 @@ class _Phonebook(commands.Cog, name="Phonebook related commands"):
         if db.find_one({'guild_id': int(snowflake)}):
             fl[name] = int(snowflake)
             db.update_one({'guild_id': ctx.guild.id}, {"$set": {'friendlist': fl}})
+            await ctx.send(f'Added {snowflake} to your phonebook as {name}.')
         else:
             await ctx.send('I don\'t know that server...')
 
@@ -33,6 +34,8 @@ class _Phonebook(commands.Cog, name="Phonebook related commands"):
         fl.pop(friend)  # more common than del idk if its better
         # del fl[friend]
         db.update_one({'guild_id': ctx.guild.id}, {"$set": {'friendlist': fl}})
+
+        await ctx.send(f"Removed {friend} from your phonebook.")
 
 
 def setup(client):

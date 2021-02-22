@@ -59,7 +59,7 @@ A secure connection between discord servers
 
 * [discord.py](https://github.com/Rapptz/discord.py)
 * [PyMongo](https://github.com/mongodb/mongo-python-driver)
-* [python-dotenv](https://github.com/theskumar/python-dotenv)
+* [env-file](https://pypi.org/project/env-file/)
 
 
 <!-- GETTING STARTED -->

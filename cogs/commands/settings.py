@@ -1,6 +1,6 @@
 from discord.ext import commands
 from discord import Forbidden
-from util.db_connection import connect_to_db
+from util.db_management.db_connection import connect_to_db
 
 db = connect_to_db()
 

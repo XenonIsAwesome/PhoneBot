@@ -1,6 +1,5 @@
 from hashlib import sha256
-from util.db_connection import connect_to_db
-from discord.ext.commands import Bot as bot
+from util.db_management.db_connection import connect_to_db
 from util.embedder import *
 
 db = connect_to_db()

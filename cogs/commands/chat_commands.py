@@ -1,7 +1,7 @@
 from discord.ext import commands
 
 from util.datatypes.conversations import *
-from util.db_connection import connect_to_db
+from util.db_management.db_connection import connect_to_db
 
 db = connect_to_db()
 discord_cli = None
@@ -25,6 +25,7 @@ class _ChatCommands(commands.Cog, name='Conversations commands'):
 
         invite = Invite(members_objects, ctx.guild, TextConv)
         await invite.send_accept(ctx)
+        await ctx.send("Sent the invite!")
 
     @commands.command(name='voice')
     async def on_voice_command(self, ctx, members):
@@ -32,7 +33,8 @@ class _ChatCommands(commands.Cog, name='Conversations commands'):
 
     @commands.command(name='disconnect')
     async def on_disconnect_command(self, ctx):
-        CONVERSATIONS[ctx.guild.id].members.pop(ctx.guild.id)
+        CONVERSATIONS.pop(ctx.guild.id).members.pop(ctx.guild.id)
+        await ctx.send("Disconnected from the conversation.")
 
 
 def setup(client):

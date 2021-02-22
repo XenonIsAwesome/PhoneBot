@@ -13,10 +13,8 @@ import logging
 import os
 
 # local imports
-from util.db_connection import connect_to_db
-from cogs.events.load import insert_guild
-
-
+from util.db_management.db_connection import connect_to_db
+from util.db_management.db_sync import sync_with_db
 
 dotenv('.env')
 
@@ -52,17 +50,15 @@ client = commands.Bot(command_prefix=get_prefix, intents=intents)
 @client.event
 async def on_ready():
     logger.info(f'Logged in as {client.user}! | Running as {os.getenv("NAME")}V{os.getenv("VERSION")}')
+    logger.info("Invite link: https://discord.com/api/oauth2/authorize?client_id=757545767236927529&permissions=3157072&scope=bot")
 
     # load all the cogs when the bot starts
     for filename in walk_cogs('cogs'):
         client.load_extension(filename)
 
-    guilds = client.guilds
-    logger.info(f'Operating in {len(guilds)} discord servers')
+    logger.info(f'Operating in {len(client.guilds)} discord servers')
 
-    for guild in guilds:
-        await insert_guild(guild)
-
+    await sync_with_db(client)
 
 
 @client.command()
