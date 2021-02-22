@@ -1,4 +1,3 @@
 .env
 phonebot.log
 owners.txt
-util/db_management/db_connection.py
