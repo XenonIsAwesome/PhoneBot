@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %} ABOUT THE CREATOR {% endblock %}
+{% block imports %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/ABOUT-THE-CREATOR.css') }}" media="screen">
+{% endblock %}
+{% block content %}
+<section class="u-clearfix u-section-1" id="sec-8cf0">
+    <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-clearfix u-expanded-width u-gutter-0 u-layout-wrap u-layout-wrap-1">
+            <div class="u-layout">
+                <div class="u-layout-row">
+                    <div class="u-container-style u-layout-cell u-left-cell u-size-31-lg u-size-31-xl u-size-34-md u-size-34-sm u-size-34-xs u-layout-cell-1">
+                        <div class="u-container-layout">
+                            <div class="u-custom-color-2 u-shape u-shape-rectangle u-shape-1"></div>
+                            <div class="u-custom-color-3 u-shape u-shape-rectangle u-shape-2"></div>
+                            <img class="u-image u-image-1" src="{{ url_for('static', filename='images/me.jpg') }}" data-image-width="1200" data-image-height="1600">
+                        </div>
+                    </div>
+                    <div class="u-align-left u-container-style u-layout-cell u-right-cell u-size-26-md u-size-26-sm u-size-26-xs u-size-29-lg u-size-29-xl u-layout-cell-2">
+                        <div class="u-container-layout u-valign-middle u-container-layout-2">
+                            <h1 class="u-text u-text-black u-text-1">Ofek Kantargi</h1>
+                            <p class="u-large-text u-text u-text-black u-text-variant u-text-2">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+                            <a href="https://www.github.com/XenonIsAwesome" class="u-active-black u-border-2 u-border-active-white u-border-black u-border-hover-grey-40 u-btn u-button-style u-hover-grey-40 u-none u-btn-1" title="learn more" target="_blank">SEE MY OTHER PROJECTS</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

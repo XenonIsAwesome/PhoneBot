@@ -1,0 +1,4 @@
+/.env
+/owners.txt
+/phonebot.log
+/db_connection.py
