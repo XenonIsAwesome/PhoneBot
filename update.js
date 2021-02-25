@@ -1,14 +1,12 @@
+function get_data(counter){
+    fetch('https://phonebotapi.herokuapp.com')
+        .then(response => response.json())
+        .then(data => counter.innerHTML = data);
+    
+    setTimeout(() => { get_data(counter) }, 1000);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('banana')
-    sio = io.connect('http://localhost:5000');
-    sio.emit('request_update');
-
     counter = document.getElementById("server_amount");
-    //counter.innerHTML = 15;
-
-    sio.on('send_update', (data) => {
-        console.log(data)
-        counter.innerHTML = data['guild_amount'];
-        setTimeout(() => { sio.emit('request_update') }, 5000);
-    });
+    get_data(counter);
 });
