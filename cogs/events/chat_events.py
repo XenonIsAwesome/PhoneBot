@@ -21,7 +21,8 @@ class _ChatEvents(commands.Cog):
     async def on_message(self, message):
         if str(message.author.id) == getenv("CLIENT_ID"):
             return
-        if not (conv := CONVERSATIONS.get(message.guild.id)):
+        conv = CONVERSATIONS.get(message.guild.id)
+        if not conv:
             return
         if message.content.startswith(db.find_one({'guild_id': message.guild.id})['prefix']):
             return
@@ -31,7 +32,8 @@ class _ChatEvents(commands.Cog):
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, payload):
         if str(payload.member.id) == getenv("CLIENT_ID"): return
-        if not (invite := INVITES.get(payload.guild_id)): return
+        invite = INVITES.get(payload.guild_id)
+        if not invite: return
         if payload.emoji.name not in '✅❌':
             return await delete_reaction(payload)
         admin_roles = db.find_one({'guild_id': payload.guild_id})['admin_roles']
@@ -41,7 +43,8 @@ class _ChatEvents(commands.Cog):
             return await delete_reaction(payload)
 
         if invite.conv_type == TextConv:
-            if conv := CONVERSATIONS.get(invite.initiator.id):
+            conv = CONVERSATIONS.get(invite.initiator.id)
+            if conv:
                 guild = discord_cli.get_guild(payload.guild_id)
                 conv.add_member(guild)
                 CONVERSATIONS[payload.guild_id] = conv

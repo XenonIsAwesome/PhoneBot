@@ -38,8 +38,10 @@ intents.reactions = True
 
 
 def get_prefix(client, message):
-    if q := db.find_one({'guild_id': message.guild.id}):
-        if prefix := q.get('prefix'):
+    q = db.find_one({'guild_id': message.guild.id})
+    if q:
+        prefix = q.get('prefix')
+        if prefix:
             return prefix
     return 'phone.'
 

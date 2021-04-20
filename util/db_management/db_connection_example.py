@@ -1,3 +1,5 @@
+# rename this file to db_connection.py
+
 from pymongo import MongoClient
 
 

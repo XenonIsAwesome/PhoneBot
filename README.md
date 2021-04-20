@@ -21,7 +21,7 @@
     ·
     <a href="https://github.com/XenonIsAwesome/PhoneBot/issues">Request Feature</a>
   </p>
-</p>
+
 
 
 <!-- TABLE OF CONTENTS -->
@@ -60,6 +60,7 @@ A secure connection between discord servers
 * [discord.py](https://github.com/Rapptz/discord.py)
 * [PyMongo](https://github.com/mongodb/mongo-python-driver)
 * [env-file](https://pypi.org/project/env-file/)
+* [dns-python](https://pypi.org/project/dnspython/)
 
 
 <!-- GETTING STARTED -->
@@ -78,7 +79,7 @@ To get a local copy up and running follow these simple steps.
    ```sh
    pip install -r requirements.txt
    ```
-3. Configure the bot using the `example.env` file
+3. Configure the bot using the `example.env` file and the `db_connection_example` file
 
 4. Run the bot
    ```sh

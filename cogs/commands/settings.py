@@ -40,9 +40,11 @@ class _Settings(commands.Cog, name="Settings"):
     @commands.command(name='prefix')
     async def _prefix(self, ctx, prefix):
         db.update_one(
-            {'guild_id', ctx.guild.id},
+            {'guild_id': ctx.guild.id},
             {"$set": {'prefix': prefix}}
         )
+
+        return await ctx.send(f"Prefix changed to `{prefix}`")
 
 
 def setup(client):
