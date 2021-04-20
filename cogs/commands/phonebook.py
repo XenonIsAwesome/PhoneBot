@@ -15,7 +15,8 @@ class _Phonebook(commands.Cog, name="Phonebook related commands"):
 
     @commands.command(name='add')
     async def _add(self, ctx, snowflake, name=None):
-        if not name: name = snowflake
+        if not name:
+            name = snowflake
 
         fl = db.find_one({'guild_id': ctx.guild.id})['friendlist']
         if db.find_one({'guild_id': int(snowflake)}):
